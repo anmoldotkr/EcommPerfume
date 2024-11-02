@@ -1,11 +1,14 @@
 
 
 const express = require('express');
-const {registerController, loginController,logoutController} = require('../controllers/controllers');
+const {registerController, loginController,logoutController, productApi} = require('../controllers/controllers');
 
 const auth = require('../middleware/auth.js');
 
 const router = express.Router();
+
+//Getting all the products get route
+router.get("/products", productApi);
 
 // Registration route
 router.post("/register", registerController);

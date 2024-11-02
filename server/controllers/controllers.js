@@ -1,6 +1,7 @@
 const UserModal = require("../modals/modals.js");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const ProductModel = require('../modals/productApi.js')
 
 const registerController = async (req, res) => {
     // Getting data from req.body
@@ -93,11 +94,26 @@ const logoutController = (req,resp)=>{
 
  resp.status(200).json({message:"Logout successfully"})
 }
+// -------------------- product Api ---------------------
+
+const productApi = async(req,res)=>{
+  try {
+    // using setTimeout for delaying to shows the product
+    setTimeout(async()=>{
+      const products = await ProductModel.find();
+      res.json(products)
+      console.log(products)
+    },2000)
+  } catch (error) {
+    console.log("Error While fetching ProductModel",error)
+  }
+}
 module.exports = {
     loginController,
     registerController,
-    logoutController
+    logoutController,
+    productApi
   };
   
 
-// -------------------- Review Api ---------------------
+
