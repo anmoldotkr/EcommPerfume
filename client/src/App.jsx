@@ -5,7 +5,7 @@ import Home from "./Home.jsx";
 import About from "./pages/About.jsx";
 import Contact from "./pages/Contact.jsx";
 import Error from "./pages/Error.jsx";
-import { Product } from "./Product.jsx";
+import  Product from "./Product.jsx"
 import SingleProduct from "./SingleProduct.jsx";
 import Cart from "./pages/Cart.jsx";
 import Protected from "./Protected.jsx";

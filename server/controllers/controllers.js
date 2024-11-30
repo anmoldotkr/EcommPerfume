@@ -96,18 +96,19 @@ const logoutController = (req,resp)=>{
 }
 // -------------------- product Api ---------------------
 
-const productApi = async(req,res)=>{
+const productApi = async (req, res) => {
   try {
-    // using setTimeout for delaying to shows the product
-    setTimeout(async()=>{
-      const products = await ProductModel.find();
-      res.json(products)
-      console.log(products)
-    },2000)
+      const products = await ProductModel.find(); // Fetch products directly
+      res.json(products); // Send the products as JSON response
+      console.log("Successfully")
   } catch (error) {
-    console.log("Error While fetching ProductModel",error)
+      console.error("Error fetching products:", error);
+      res.status(500).json({ message: "Internal Server Error" });
   }
-}
+};
+
+
+
 module.exports = {
     loginController,
     registerController,
