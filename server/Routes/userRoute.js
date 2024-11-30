@@ -1,20 +1,17 @@
-
-
 const express = require('express');
-const {registerController, loginController,logoutController} = require('../controllers/controllers');
-
+const { registerController, loginController, logoutController, productApi } = require('../controllers/controllers');
 const auth = require('../middleware/auth.js');
 
 const router = express.Router();
 
-// Registration route
-router.post("/register", registerController);
+// Product routes
+router.get("/allproducts", productApi); // Get all products
 
-// Login route
-router.post("/login", loginController);
+// Authentication routes
+router.post("/register", registerController); // User registration
+router.post("/login", loginController); // User login
+router.post("/logout", logoutController); // User logout
 
-//Logout route 
-router.post("/logout",logoutController)
 // Protected route example
 router.get("/protected", auth, (req, res) => {
     res.status(200).json({ message: 'Access granted', success: true });

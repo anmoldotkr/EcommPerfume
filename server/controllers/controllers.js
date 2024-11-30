@@ -1,6 +1,7 @@
 const UserModal = require("../modals/modals.js");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const ProductModel = require('../modals/productApi.js')
 
 const registerController = async (req, res) => {
     // Getting data from req.body
@@ -93,11 +94,27 @@ const logoutController = (req,resp)=>{
 
  resp.status(200).json({message:"Logout successfully"})
 }
+// -------------------- product Api ---------------------
+
+const productApi = async (req, res) => {
+  try {
+      const products = await ProductModel.find(); // Fetch products directly
+      res.json(products); // Send the products as JSON response
+      console.log("Successfully")
+  } catch (error) {
+      console.error("Error fetching products:", error);
+      res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+
+
 module.exports = {
     loginController,
     registerController,
-    logoutController
+    logoutController,
+    productApi
   };
   
 
-// -------------------- Review Api ---------------------
+
