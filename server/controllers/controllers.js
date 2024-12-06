@@ -95,18 +95,18 @@ const logoutController = (req,resp)=>{
  resp.status(200).json({message:"Logout successfully"})
 }
 // -------------------- product Api ---------------------
+const productApi = async(req,resp)=>{
+    try {
+      // Fetch all products without pagination
+      const products = await ProductModel.find();
+      resp.json(products);
 
-const productApi = async (req, res) => {
-  try {
-      const products = await ProductModel.find(); // Fetch products directly
-      res.json(products); // Send the products as JSON response
-      console.log("Successfully")
+      console.log("Successfully fetched all products");
   } catch (error) {
-      console.error("Error fetching products:", error);
-      res.status(500).json({ message: "Internal Server Error" });
+      console.log("Error fetching products:", error);
+      resp.status(500).json({ message: "Internal server Error" });
   }
-};
-
+}
 
 
 module.exports = {
