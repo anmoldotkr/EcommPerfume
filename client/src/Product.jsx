@@ -3,21 +3,31 @@ import axios from "axios";
 import Navbar from "./components/Navbar.jsx";
 import BackgroundDesginComp from "./components/BackgroundDesginComp.jsx";
 import './loader/index.css'
+import SearchandFilter from "./components/SearchandFilter.jsx";
+import { useLocation } from 'react-router-dom';
+
 const ProductList = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const q = queryParams.get('q');
+    
 
     useEffect(() => {
         fetchProducts();
-    }, []); // Fetch products when the component mounts
+    }, [q]); // Fetch products when the component mounts
 
     const fetchProducts = async () => {
+        
         setLoading(true);
         setError(null);
 
         try {
-            const response = await axios.get(`http://localhost:5000/api/allproducts`);
+            const response = await axios.get(`http://localhost:5000/api/allproducts`, {
+                params: {searchQuery : q}, // Pass the 'q' parameter to the API
+              });
             const newProducts = response.data || []; // Assuming response.data is the array of products
 
             // delayig to show all the products 
@@ -36,6 +46,7 @@ const ProductList = () => {
         <div>
             <Navbar />
             <BackgroundDesginComp />
+            <SearchandFilter/>
             <div className="container mx-auto px-2 py-5">
                 <div className="flex items-center justify-center flex-col">
                     <h1 className="font-extrabold text-2xl">All Time Favourite's</h1>

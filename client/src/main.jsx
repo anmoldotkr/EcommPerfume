@@ -2,13 +2,11 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
-import AuthProvider, {useAuth} from "./contextAuth/ContextAuth.jsx"
+// import AuthProvider, {useAuth} from "./contextAuth/ContextAuth.jsx"
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-        <AuthProvider>
           <App />
-        </AuthProvider>
   </React.StrictMode>
  
 );

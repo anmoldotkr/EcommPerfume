@@ -8,12 +8,12 @@ import Error from "./pages/Error.jsx";
 import  Product from "./Product.jsx"
 import SingleProduct from "./SingleProduct.jsx";
 import Cart from "./pages/Cart.jsx";
-import Protected from "./Protected.jsx";
+// import Protected from "./Protected.jsx";
 
 function App() {
   return (
     <>
-      <Router>
+      <Router>  
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
@@ -24,9 +24,6 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="*" element={<Error />} />
-          <Route path='/protected' element={<Protected>
-            <Home/>
-          </Protected>}/>
         </Routes>
       </Router>
     </>

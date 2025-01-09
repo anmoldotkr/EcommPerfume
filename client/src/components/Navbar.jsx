@@ -1,13 +1,8 @@
-
-
 import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-import { Link, NavLink , useNavigate} from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { FiShoppingCart } from "react-icons/fi";
-import {useAuth} from "../contextAuth/ContextAuth";
-
-
 
 const navigation = [
   { name: "Home", href: "/" },
@@ -18,19 +13,15 @@ const navigation = [
 
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const {isAuthenticated,logout,login} = useAuth()
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // State to manage login status
 
-  const navigate  = useNavigate();
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
 
-  const handleLogin = ()=>{
-    login();
-    navigate('/login')
-  }
-
-  const handleLogout = async()=>{
-    await logout()
-    navigate('/')
-  }
+  const handleLogout = () => {
+    setIsLoggedIn(false);
+  };
   return (
     <div className="bg-white">
       <header className="absolute inset-x-0 top-0 z-50">
@@ -67,26 +58,25 @@ export default function Example() {
             ))}
           </div>
           <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-            
-            {
-              isAuthenticated ? (
-               <button onClick={handleLogout} className="text-sm font-semibold leading-6 text-gray-900"
-               >
-                  LoginNav <span aria-hidden="true">&rarr;</span>
-               </button>
-              ):(
-                
-
-                <button onClick={handleLogin} className="text-sm font-semibold leading-6 text-gray-900">
-                LogoutNav <span aria-hidden="true">&rarr;</span>
-               </button>
-                
-              )
-            }
-            
             <NavLink to="/cart">
               <FiShoppingCart className="text-xl" />
             </NavLink>
+            {/* Login and Logout Buttons */}
+            {isLoggedIn ? (
+              <button
+                onClick={handleLogout}
+                className="ml-4 text-sm font-semibold leading-6 text-gray-900"
+              >
+                Logout
+              </button>
+            ) : (
+              <button
+                onClick={handleLogin}
+                className="ml-4 text-sm font-semibold leading-6 text-gray-900"
+              >
+                Login
+              </button>
+            )}
           </div>
         </nav>
         <Dialog
@@ -129,14 +119,6 @@ export default function Example() {
                   ))}
                   <NavLink to="/cart">
                     <FiShoppingCart />
-                  </NavLink>
-                </div>
-                <div className="py-6">
-                  <NavLink
-                    to="/login"
-                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                  >
-                    Log in
                   </NavLink>
                 </div>
               </div>
