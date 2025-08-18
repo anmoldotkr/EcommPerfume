@@ -40,10 +40,7 @@ const Header = () => {
             </h1>
             <p className=" text-lg leading-8 text-gray-600 p-3">
               Our carefully curated perfume not only leaves a lasting impression
-              but also embodies the essence of luxury and timeless charm. With
-              every spritz, envelop yourself in a fragrant journey that
-              complements your style and leaves those around you captivated by
-              the subtle allure of a truly exceptional scent. Elevate your
+              but also embodies the essence of luxury and timeless charm. Elevate your
               presence with our distinguished perfume, where every note tells a
               story of refinement and allure.
             </p>
@@ -54,7 +51,7 @@ const Header = () => {
             </div>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <a
-                href="/product"
+                href="/collections"
                 className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
               >
                 New Collection
