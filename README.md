@@ -66,9 +66,8 @@ Secure login with Passport.js + JWT
 
 Product Management
 
-📦 Fetch and display perfumes from MongoDB
-
 🛒 Product detail pages (/singleproduct/:id)
+> Note: Product listing is currently working locally only. To connect to MongoDB and view products, you need an `.env` file with the database URL.
 
 Shopping Cart
 
